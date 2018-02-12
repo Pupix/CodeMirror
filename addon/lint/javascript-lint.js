@@ -24,7 +24,7 @@
         "node": true,
         "es6": true
     },
-    rules: {
+    "rules": {
         "constructor-super": "error",
         "no-case-declarations": "error",
         "no-class-assign": "error",
@@ -79,11 +79,15 @@
     return;
   }
 
+  if (!text) {
+    return [];
+  }
+
   if (cm.adapter) {
     text = `${cm.adapter.inputPrefix || ''}${text}${cm.adapter.inputSuffix || ''}`;
   }
 
-  var result = [], config = defaultConfig;
+  var result = [], config = Object.assign({}, defaultConfig, { rules: Object.assign({}, defaultConfig.rules, options) });;
   var errors = window.eslint.verify(text, config);
   for (var i = 0; i < errors.length; i++) {
     var error = errors[i];
