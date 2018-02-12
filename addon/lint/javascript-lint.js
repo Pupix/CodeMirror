@@ -74,14 +74,13 @@
     }
   }
 
-  const jsPattern = /javascript/;
   function validator(text, options, cm) {
   if (!window.eslint) {
     return;
   }
 
-  if (cm.options.mode.match(jsPattern)) {
-     text = `async () => { ${text} }`;
+  if (cm.adapter) {
+    text = `${cm.adapter.inputPrefix || ''}${text}${cm.adapter.inputSuffix || ''}`;
   }
 
   var result = [], config = defaultConfig;
