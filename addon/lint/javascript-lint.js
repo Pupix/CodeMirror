@@ -17,7 +17,11 @@
     "ecmaFeatures": {},
     "parserOptions": {
       "ecmaVersion": 2017,
-      "sourceType": 'module'
+      "sourceType": 'module',
+      "ecmaFeatures": {
+          "impliedStrict": true,
+          "experimentalObjectRestSpread ": true
+      }
     },
     "env": {
         "browser": true,
